@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <script src="https://rowermevo.pl/locations.js"></script>
+        <meta charset="UTF-8">
+        <title>My MEVO stations</title>
+        <style>
+.available {color: green;}
+.one   {color: yellowgreen;}
+.none  {color: red;}
+        </style>
+    </head>
+    <body>
+        <ul id="places"></ul>
+	<p>See <a href="https://github.com/pvessel/my-mevo-stations">Github</a></p>
+        <script>
+myPlacesIds = getMyPlacesIds();
+allPlaces = getAllPlaces();
+myPlaces = getMyPlaces(allPlaces, myPlacesIds);
+html = createHtml(myPlaces);
+myPlacesList = document.getElementById("places");
+myPlacesList.innerHTML = html;
+
+
+function getMyPlacesIds() {
+    const urlParams = new URLSearchParams(window.location.search);
+    const places = urlParams.get('places');
+    const trimmedPlaces = places.replace(/ /gi, '');
+    const formatedPlaces = trimmedPlaces.replace('.', ',');
+    const placeIds = formatedPlaces.split(",");
+
+    return placeIds;
+}
+
+function getAllPlaces() {
+    const placesDBparsed = JSON.parse(NEXTBIKE_PLACES_DB);
+    const placesDB = placesDBparsed[0]['places'];
+    
+    return placesDB;
+}
+
+function getMyPlaces(allPlaces, myPlacesIds) {
+    var myPlaces = [];
+
+    var arrayLength = allPlaces.length;
+    for (var i = 0; i < arrayLength; i++) {
+        number = allPlaces[i]['number'];
+        if(myPlacesIds.indexOf(number.toString()) !== -1) {
+            myPlaces.push(allPlaces[i]);
+        }
+    }
+
+    return myPlaces;
+}
+
+function createHtml(myPlaces) {
+    var html = "";
+    var arrayLength = myPlaces.length;
+    for (var i = 0; i < arrayLength; i++) {
+        if(myPlaces[i]['bikes'] > 1) {
+            html += ' <li class="available"> ';
+        } else if(myPlaces[i]['bikes'] == 1) {
+            html += ' <li class="one"> ';           
+        } else {
+            html += ' <li class="none"> '; 
+        }
+
+        html = html.concat(myPlaces[i]['bikes'] + ' - ' + myPlaces[i]['city'] + ' ' + myPlaces[i]['name'] + '</li>' );
+    }
+    
+    return html;
+}
+</script>
+        
+    </body>
+</html>

@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+    <head>
+    <script>
+function validateForm()
+{
+    var places = document.getElementById("places");
+    var placesValue = places.value; 
+    
+    if (!(/^[0-9,. ]{2,}$/.test(placesValue))) {
+        alert("Stations must be numbers, separated by comma or dot");
+        return false;
+    }
+
+  return true;
+}    
+    
+    </script>
+        <meta charset="UTF-8">
+        <title>My MEVO stations status</title>
+    </head>
+    <body>
+        Type your stations numbers, separated by comma.
+        <form action="places.html" method="get"  onsubmit="return validateForm();">
+            <input id="places" type="text" name="places" />
+            <input type="submit" value="Check status" />
+        </form>
+        <p>See <a href="https://github.com/pvessel/my-mevo-stations">Github</a></p>
+    </body>
+</html>
