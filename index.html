@@ -7,8 +7,8 @@ function validateForm()
     var places = document.getElementById("places");
     var placesValue = places.value; 
     
-    if (!(/^[0-9,. ]{2,}$/.test(placesValue))) {
-        alert("Stations must be numbers, separated by comma or dot");
+    if (!(/^[0-9]{4,}/.test(placesValue))) {
+        alert("Type at least one station number");
         return false;
     }
 
@@ -17,14 +17,31 @@ function validateForm()
     
     </script>
         <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>My MEVO stations status</title>
+        <style>
+html, body {
+    font-family: Verdana,sans-serif;
+    font-size: 20px;
+    line-height: 1.5;
+    background-color: #ebeff0;
+    color: #384977;
+}
+h1 {
+    background-color: #bfe3f0;
+    color: #ea5144;
+    padding: 5px;
+}
+textarea {width: 100%}
+        </style>        
     </head>
     <body>
-        Type your stations numbers, separated by comma.
+        <h1>My MEVO stations</h1>
+        Type your stations numbers followed by YOUR station description, separated by comma.
         <form action="places.html" method="get"  onsubmit="return validateForm();">
-            <input id="places" type="text" name="places" />
+            <textarea name="places" id="places" rows="5"></textarea><br />
             <input type="submit" value="Check status" />
         </form>
-        <p>See <a href="https://github.com/pvessel/my-mevo-stations">Github</a></p>
+        <p>See <a href="https://github.com/pvessel/my-mevo-stations">Github</a> for more details.</p>
     </body>
 </html>

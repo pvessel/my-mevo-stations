@@ -1,18 +1,32 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <script src="https://rowermevo.pl/locations.js"></script>
         <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>My MEVO stations</title>
         <style>
+html, body {
+    font-family: Verdana,sans-serif;
+    font-size: 20px;
+    line-height: 1.5;
+    background-color: #ebeff0;
+    color: #384977;
+}
+h1 {
+    background-color: #bfe3f0;
+    color: #ea5144;
+    padding: 5px;
+}
 .available {color: green;}
 .one   {color: yellowgreen;}
 .none  {color: red;}
         </style>
+        <script src="https://rowermevo.pl/locations.js"></script>
     </head>
     <body>
+        <h1>My MEVO stations</h1>
         <ul id="places"></ul>
-	<p>See <a href="https://github.com/pvessel/my-mevo-stations">Github</a></p>
+        <p>See <a href="https://github.com/pvessel/my-mevo-stations">Github</a> for more details.</p>
         <script>
 myPlacesIds = getMyPlacesIds();
 allPlaces = getAllPlaces();
@@ -21,15 +35,13 @@ html = createHtml(myPlaces);
 myPlacesList = document.getElementById("places");
 myPlacesList.innerHTML = html;
 
-
 function getMyPlacesIds() {
     const urlParams = new URLSearchParams(window.location.search);
-    const places = urlParams.get('places');
-    const trimmedPlaces = places.replace(/ /gi, '');
-    const formatedPlaces = trimmedPlaces.replace('.', ',');
-    const placeIds = formatedPlaces.split(",");
+    const placesParam = urlParams.get('places');
+    const trimmedPlaces = placesParam.trim();
+    const myPlaces = trimmedPlaces.split(",");
 
-    return placeIds;
+    return myPlaces;
 }
 
 function getAllPlaces() {
@@ -42,11 +54,20 @@ function getAllPlaces() {
 function getMyPlaces(allPlaces, myPlacesIds) {
     var myPlaces = [];
 
-    var arrayLength = allPlaces.length;
-    for (var i = 0; i < arrayLength; i++) {
-        number = allPlaces[i]['number'];
-        if(myPlacesIds.indexOf(number.toString()) !== -1) {
-            myPlaces.push(allPlaces[i]);
+    var allPlacesLength = allPlaces.length;
+    var myPlacesLength = myPlacesIds.length;
+    for (var i = 0; i < myPlacesLength; i++) {
+    myPlacesId = myPlacesIds[i];
+        number = myPlacesId.match(/[0-9]{4,}/);
+        description = myPlacesId.replace(number, "");
+        
+        for (var j = 0; j < allPlacesLength; j++) {
+            if(parseInt(number) === allPlaces[j]['number']) {
+                found = allPlaces[j];
+                found["description"] = description;
+                myPlaces.push(found);
+                break; // assuming station no exist one in all stations area
+            }
         }
     }
 
@@ -65,11 +86,13 @@ function createHtml(myPlaces) {
             html += ' <li class="none"> '; 
         }
 
-        html = html.concat(myPlaces[i]['bikes'] + ' - ' + myPlaces[i]['city'] + ' ' + myPlaces[i]['name'] + '</li>' );
+        html = html.concat(myPlaces[i]['bikes'] + '🚲 - ' + myPlaces[i]['description'] + ' ' + myPlaces[i]['city'] + ' station no. ' + myPlaces[i]['name'] + '</li>' );
     }
     
     return html;
 }
+
+
 </script>
         
     </body>

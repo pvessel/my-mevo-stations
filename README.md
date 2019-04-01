@@ -13,10 +13,10 @@ Just clone repository and open index.html in Javascript compatible browser.
 
 # Basic usage
 
-index.html contains simple form. Input station numbers taken from  https://rowermevo.pl/mapa-stacji/ or https://nextbike.pl separated by comma. 
+index.html contains simple form. Input station numbers taken from  https://rowermevo.pl/mapa-stacji/ or https://nextbike.pl followed by YOUR description separated by comma. 
 Target page is places.html with GET parameter for example: 
 ```
-places.html?places=11001,11238,12025
+places.html?places=11001 home,11238 school,12025 work
 
 ```
 
