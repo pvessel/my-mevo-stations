@@ -4,7 +4,7 @@ Check the status of your MEVO (https://rowermevo.pl) stations.
 This pure html/javascript page goal is to display status of your defined MEVO stations. It shows the number of available to rent bicycles.
 Most usefull on mobile devices.
 
-Demo: http://nsb.pl/mevo
+Demo: http://mevo.nsb.pl/
 
 
 # Installation
