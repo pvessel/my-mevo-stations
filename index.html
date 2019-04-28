@@ -1,45 +1,17 @@
 <!DOCTYPE html>
 <html>
-    <head>
-    <script>
-function validateForm()
-{
-    var places = document.getElementById("places");
-    var placesValue = places.value; 
-    
-    if (!(/^[0-9]{4,}/.test(placesValue))) {
-        alert("Type at least one station number");
-        return false;
-    }
-
-  return true;
-}    
-    
-    </script>
+    <head lang="en">
+        <script src="validator.js"></script>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>My MEVO stations status</title>
-        <style>
-html, body {
-    font-family: Verdana,sans-serif;
-    font-size: 20px;
-    line-height: 1.5;
-    background-color: #ebeff0;
-    color: #384977;
-}
-h1 {
-    background-color: #bfe3f0;
-    color: #ea5144;
-    padding: 5px;
-}
-textarea {width: 100%}
-        </style>        
+        <link rel="stylesheet" type="text/css" href="main.css">
     </head>
     <body>
-        <h1>My MEVO stations</h1>
-        Type your stations numbers followed by YOUR station description, separated by comma.
+        <header><h1><img src="logo_en.png" alt="My MEVO stations" /></h1></header>
+        <p>Type your stations numbers followed by YOUR station description, separated by comma. Find your station numbers on <a href="https://rowermevo.pl/en/map/">Official Mevo map</a>.</p>
         <form action="places.html" method="get"  onsubmit="return validateForm();">
-           <textarea name="places" id="places" rows="5">10100 Sopot molo,12000 Gdynia gł. na lewo,12004 Gdynia głowna prawo,11358 OBC,11106 OBC druga,11093 Neptun</textarea><br />
+           <textarea name="places" id="places" rows="5">10100 Pier,12000 Gdynia PKP on left,12004 Gdynia pkp on right ,11358 OBC,11106 OBC the second,11093 Neptune's Fountain</textarea><br />
             <input type="submit" value="Check status" />
         </form>
         <p>See <a href="https://github.com/pvessel/my-mevo-stations">Github</a> for more details.</p>

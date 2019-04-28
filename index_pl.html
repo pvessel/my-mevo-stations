@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+    <head lang="pl">
+        <script src="validator.js"></script>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Moje stacje Mevo</title>
+        <link rel="stylesheet" type="text/css" href="main.css">
+    </head>
+    <body>
+        <header><h1><img src="logo_pl.png" alt="Moje stacje Mevo" /></h1></header>
+        <p>Wpisz numery Twoich najważniejszych stacji Mevo wraz z własnym opisem. Oddzielaj je przecinkiem. Znajdziesz numery na <a href="https://rowermevo.pl/mapa-stacji/">Oficjalnej Stronie Mevo</a>.</p>
+        <form action="places_pl.html" method="get"  onsubmit="return validateForm();">
+           <textarea name="places" id="places" rows="5">10100 Sopot molo,12000 Gdynia gł. na lewo,12004 Gdynia głowna prawo,11358 OBC,11106 OBC druga,11093 Neptun</textarea><br />
+            <input type="submit" value="Sprawdź status" />
+        </form>
+        <p>Strona projektu jest na <a href="https://github.com/pvessel/my-mevo-stations">Github</a>.</p>
+    </body>
+</html>

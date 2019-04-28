@@ -41,7 +41,7 @@ function getMyPlaces(allPlaces, myPlacesIds) {
                 found = allPlaces[j];
                 found["description"] = description;
                 myPlaces.push(found);
-                break; // assuming station no exist one in all stations area
+                break; // assuming station exist once in all stations list
             }
         }
     }
@@ -61,7 +61,7 @@ function createHtml(myPlaces) {
             html += ' <li class="none"> '; 
         }
 
-        html = html.concat(myPlaces[i]['bikes'] + '🚲 - ' + myPlaces[i]['description'] + ' ' + myPlaces[i]['city'] + ' station no. ' + myPlaces[i]['name'] + '</li>' );
+        html = html.concat('<strong>' + myPlaces[i]['bikes'] + '🚲 - ' + myPlaces[i]['description'] + ' </strong><small><em>' + myPlaces[i]['city'] + ' #' + myPlaces[i]['name'] + '</small></em></li>' );
     }
     
     return html;
