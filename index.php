@@ -1,6 +1,5 @@
 <?php
-
-$preferedLanguage =  prefered_language(["en-gb", "en-us", "pl-pl"]);
+$preferedLanguage =  prefered_language(array("en-gb", "en-us", "pl-pl"));
 
 if ("pl-pl" == $preferedLanguage){
     $sufix = "_pl";
